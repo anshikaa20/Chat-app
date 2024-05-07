@@ -15,10 +15,10 @@ export const SocketContextProvider = ({children})=>{
 
 useEffect(()=>{
     if(authUser) {
-      const socket = io("http://localhost:5000",{
+      const socket = io("https://localhost:5000",{
         query:{
-            userId:authUser._id 
-        }
+            userId:authUser._id,
+        },
     
     
       });
@@ -36,8 +36,8 @@ useEffect(()=>{
             setSocket(null);
         }
     }
-},[]);
+},[authUser]);
 
-    return < SocketContext.Provider value ={{socket,onlineUsers}}> {children} </SocketContext.Provider>
+    return <SocketContext.Provider value ={{socket,onlineUsers}}> {children} </SocketContext.Provider>
     
 }
